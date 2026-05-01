@@ -46,7 +46,8 @@ const webDist = path.resolve(__dirname, "../../web/dist");
 const webIndex = path.join(webDist, "index.html");
 if (fs.existsSync(webIndex)) {
   app.use(express.static(webDist));
-  app.get("*", (req, res, next) => {
+  // Express 5 (path-to-regexp v6) doesn't accept "*" as a path pattern.
+  app.get("/*", (req, res, next) => {
     if (
       req.path.startsWith("/auth") ||
       req.path.startsWith("/projects") ||
