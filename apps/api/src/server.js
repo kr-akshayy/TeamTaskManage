@@ -46,8 +46,9 @@ const webDist = path.resolve(__dirname, "../../web/dist");
 const webIndex = path.join(webDist, "index.html");
 if (fs.existsSync(webIndex)) {
   app.use(express.static(webDist));
-  // Express 5 (path-to-regexp v6) doesn't accept "*" as a path pattern.
-  app.get("/*", (req, res, next) => {
+  // Express 5 (path-to-regexp v6) is strict about wildcard route patterns.
+  // Use a catch-all middleware instead of app.get("*"/"/*").
+  app.use((req, res, next) => {
     if (
       req.path.startsWith("/auth") ||
       req.path.startsWith("/projects") ||
