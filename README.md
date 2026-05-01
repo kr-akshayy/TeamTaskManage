@@ -52,4 +52,3 @@ npm run dev
   - View project + tasks
   - Create tasks (optional; enabled here)
   - Update status of tasks assigned to them
-
