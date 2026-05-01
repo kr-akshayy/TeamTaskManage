@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+*.env
+apps/api/dev.db
+apps/api/dev.db-journal
+apps/api/prisma/dev.db
+apps/api/prisma/dev.db-journal
+.prisma/
+.vite/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+node_modules
