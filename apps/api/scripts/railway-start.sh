@@ -1,18 +1,18 @@
 #!/bin/sh
 set -eu
 
-# Prisma SQLite URLs must start with `file:`.
-# On Railway, users sometimes set DATABASE_URL to a path like "./dev.db".
-case "${DATABASE_URL:-}" in
-  file:*)
-    ;;
-  "")
-    export DATABASE_URL="file:./dev.db"
+# Railway Postgres sets DATABASE_URL like:
+# postgres://... or postgresql://...
+if [ -z "${DATABASE_URL:-}" ]; then
+  echo "DATABASE_URL is required (Railway Postgres). Set it in Railway Variables."
+  exit 1
+fi
+case "$DATABASE_URL" in
+  postgres://*|postgresql://*)
     ;;
   *)
-    # If it's not a SQLite URL, fall back to local SQLite to keep the service up.
-    # (If you intend to use Postgres on Railway, change prisma/schema.prisma provider/url accordingly.)
-    export DATABASE_URL="file:./dev.db"
+    echo "DATABASE_URL must be a Postgres URL (postgres:// or postgresql://)."
+    exit 1
     ;;
 esac
 
