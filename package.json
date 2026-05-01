@@ -8,6 +8,7 @@
     "dev": "npm run dev -w @tm/api & npm run dev -w @tm/web",
     "dev:api": "npm run dev -w @tm/api",
     "dev:web": "npm run dev -w @tm/web",
+    "start": "npm run start -w @tm/api",
     "build": "npm run build -w @tm/api && npm run build -w @tm/web",
     "lint": "npm run lint -w @tm/api && npm run lint -w @tm/web"
   }
